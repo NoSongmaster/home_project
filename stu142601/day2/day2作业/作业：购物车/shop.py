@@ -29,7 +29,7 @@ while True:
         choice_num=int(choice_num)
         pay="\033[1;31;40m 未成功 \033[0m "
         if salary >shop_list[choice_num][1]:        #判断工资是否足够支付购买物品
-            shop_cart.append(shop_list[choice_num])
+            shop_cart.append(shop_list[choice_num][0])
             salary-=shop_list[choice_num][1]
             pay='\033[1;33;47m 成功 \033[0m'
         print("您购买%s%s,剩余金额为：%s"%(shop_list[choice_num][0],pay,salary))
@@ -37,4 +37,8 @@ while True:
     else:
         print('输入错误')
         continue
-print("打印购物列表\033[1;34;43m %s \033[0m"%shop_cart)
+set1=set(shop_cart)
+print("购物车已购商品：")
+for i in set1:
+    print(i,"\033[1;34;43m",shop_cart.count(i),"个","\033[0m")
+#print("打印购物列表\033[1;34;43m %s \033[0m"%shop_cart)
