@@ -262,7 +262,7 @@ def main():
     print('''欢迎登陆员工数据库。''')
     while True:
         try:
-         sql=input('请输入sql语句 [help]>>').strip()
+         sql=input('请输入sql语句 [help,exit]>>').strip()
          if sql =='help':
              print('''
              范例：
@@ -272,6 +272,8 @@ def main():
              delete from user_database where staff_id > '10'
              update user_database set age = 100 where age = 77
          ''')
+         elif sql =='exit':
+             exit()
          else:
              choice=sql.split(' ')
              msg={"select":[select_search,choice[3]],"insert":[add_user_list,choice[2]],"delete":[delete,choice[2]],"update":[modify,choice[1]]}
