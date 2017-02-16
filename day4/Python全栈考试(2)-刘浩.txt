@@ -1,0 +1,312 @@
+# Python全栈考试(二)
+
+## 基础题
+
+1. 计算100-300之间所有能被3和7整除的所有数之和
+    count=0
+    for i in range(100,301):
+        if i%3==0 or i%7==0:
+            count+=i
+    print(count)
+2. 定义函数统计一个字符串中大写字母, 小写字母, 数字的个数, 并返回结果
+    def func(string):
+    num_count=0
+    upper_count=0
+    lower_count=0
+    for i in string :
+        if i.isdigit():
+            num_count+=1
+        elif i.isupper():
+            upper_count+=1
+        elif i.islower():
+            lower_count+=1
+    return num_count,upper_count,lower_count
+3. 获取两个列表 l1 = [11,22,33],l2=[22,33,44]中相同的元素集合
+    print(set(l1) & set(l2))
+4. 将字符串"老男人"转换成UTF-8编码的字节类型
+    name.encode('utf-8')
+5. 如何计算数字绝对值
+    abs(-100)
+6. 解释深浅拷贝的原理
+    浅拷贝：不占用内存空间，将变量的指针指向原来的内存空间。调用的同一块内存空间。
+    深拷贝：新开辟一块内存空间，将变量的执政指向新的内存空间，调用不同的内存空间。
+7. 列举布尔值为False的值
+    0 False '' [] () {} None 
+8. 内置函数all和any的区别
+    any:当传入空可迭代对象时返回False，当可迭代对象中有任意一个不为False，则返回True
+    all:当传入空可迭代对象时返回True，当可迭代对象中有任意一个不为True，则返回False
+9. 利用内置函数将数字12 分别转换成二进制, 八进制, 十六进制表示的字符串
+    
+10. 简述内建函数dir, help, id, type的作用
+
+11. 简述内建函数globals, locals作用
+
+12. 简述三元运算的书写格式
+
+13. 简述lambda表达式的书写格式
+
+14. 利用内建函数zip, 实现功能
+l1 = ["alex",22,33,44,55]
+l2 = ["is",22,33,44,55]
+l3 = ["good",22,33,44,55]
+l4 = ["guy",22,33,44,55]
+请获取字符串s = "alex_is_good_guy"
+
+15. 简述文件打开模式'r'和'rb'的区别和影响
+
+16. 文件操作时with的作用
+
+17. 利用with实现同时打开两个文件(一读, 一写)
+
+18. 函数的默认返回值是什么
+
+19. 简述函数的普通参数, 指定参数, 默认参数, 动态参数的特点和注意事项
+
+20. 通过字符串格式化将7.88123输出时仅保留小数点后两位, 例如: "bala 7.88 bala"
+
+21. 判断以下字符串格式化是否正确, 如果不正确请改正
+tpl1 = "i am {name}, age {age}, really {name}".format(name="seven",age=18)
+tpl2 = "i am {0}, age {1}".format(["seven",18])
+
+22. Python有集中导入模块的方式
+
+23. 分页 如果有192个商品, 每页显示10个商品, 问共需要几页
+
+24. 函数传递参数时, 是引用还是复制值
+
+25. Python3中的range函数和Python2.7中的range函数有什么区别
+
+26. Python中导入模块时, 如何搜索其路径
+
+27. sys.argv的作用
+
+28. 如何获取一个路径的上级目录的路径
+
+29. 请将以下三个路径按照a,b,c的顺序拼接起来
+
+30. 简述一个随机字母的思路
+
+31. 简述re模块中match, search一级findall方法的特点
+
+32. 简述正则表达式中分组的作用
+
+33. 请书写输出结果:
+import re
+origin = "hello/bin/uuu/haa/d"
+result = re.findall(r"(\w+)/", origin)
+print(result)
+
+34. 简述计算1*2+3*4+5*6+7*8...+99*100的实现思路
+
+35. Python中有两种序列化Json和Pickle的区别
+
+36. 简述json模块中提供的方法: dumps, dump, loads, load的作用和注意事项
+
+37. 有如下变量
+import json
+l1 = ["alex", 123, "eric"]
+l2 = ["alex", 123, 'eric']
+s1 = """["alex", 123, "eric"]"""
+s2 = """["alex", 123, 'eric']"""
+# 请判断以下四个操作是否正确
+json.loads(l1)
+json.loads(l2)
+json.loads(s1)
+json.loads(s2)
+json.dumps(l1)
+json.dumps(l2)
+json.dumps(s1)
+json.dumps(s2)
+
+38. Http请求时, 其本质返回的是什么类型
+
+39. 书写邮箱的正则表达式
+
+40. 使用冒泡算法将li=[13, 22, 6, 99, 11]进行排序
+
+41. 简述对象和类的关系
+
+## 阅读代码 书写结果
+1. 如下代码
+a = "oldboy %"
+print(a)
+输出结果为:
+b = "oldboy %d %%" % (12,)
+print(b)
+输出结果为:
+
+2. 如下代码
+def func(a1):
+    return a1+100
+func = lambda a1:a1 + 200
+ret = func(10)
+print(ret)
+输出结果为:
+
+3. 如下代码
+def f1(arg):
+    print(arg+100)
+def f2(arg):
+    ret = f1(arg+1)
+    print(arg)
+    print(ret)
+ret = f2(7)
+print(ret)
+输出结果为:
+
+4. 如下代码
+def f1(arg):
+    print(id(arg))
+n = 1111111
+print(id(n))
+f1(n)
+输出的两个值是否相同:
+
+5. 如下代码
+def func(arg):
+    arg.append(55)
+li = [11,22,33,44]
+li = func(li)
+print(li)
+输出结果为:
+
+6.如下代码
+a. 
+NAMELIST = ['alex', 'eric']
+def func():
+    NAMELIST = 123
+func()
+print(NAMELIST)
+输出结果为:
+
+b. 
+NAMELIST = ['alex', 'eric']
+def func():
+    global NAMELIST
+    NAMELIST = 123
+func()
+print(NAMELIST)
+输出结果为:
+
+c. 
+NAMELIST = ['alex','eric']
+def func():
+    NAMELIST.append('seven')
+func()
+print(NAMELIST)
+输出结果为:
+
+7. 如下代码
+r1 = eval("1+10*10")
+r2 = exec("1+10*10")
+print(r1, r2)
+输出结果为:
+
+8. 如下代码
+import re
+r = re.match("\d+", "123abc").group()
+print(r)
+输出结果为:
+
+9. 如下代码
+def outer(func):
+    def inner():
+        ...
+    return inner()
+@outer()
+def f(arg):
+    ...
+请列举上述装饰器的所有错误之处:
+注: 代码中的...处请忽略
+
+## 编程题
+1. 利用filter, 自定义函数 获取l1中元素大于33的所有元素
+
+2. 利用filter, lambda表达式 获取l1中元素小于33的所有元素
+
+3. 利用map, 自定义函数将所有是奇数的元素加100
+
+4. 利用map, lambda表达式 将所有是偶数的元素加100
+
+5. 使用for循环实现打印99乘法表
+
+6. 递归实现乘阶 1*2...*7
+
+7. 写函数:
+题目如下：
+如有以下两个列表
+l1 = [...]
+l2 = []
+第一个列表中的数字无序不重复排列, 第二个列表为空列表
+需求:
+    取出第一个列表的最小值 放到第二个列表的首个位置,
+    取出第一个列表的最小值(仅大于上一次的最小值) 放到第二个列表的首个位置)
+    ..
+    以此类推, 从而获得一个有序的列表l2, 并将其返回给函数调用者
+    不能改变l1列表, 不能对之进行排序, 也不可以倒到别的列表中.
+def func(l1, l2):
+    pass
+
+8. 写装饰器:
+如有以下两个函数, 请书写一个装饰器实现在不改变函数调用者的代码基础上, 实现在函数执行前后分别打印"before"和"after"
+def f1(arg):
+    return arg + 1
+def f2(arg1, arg2):
+    return arg1 + arg2
+
+## 应用题
+1. 使用requests和xml模块实现天气查询, 并友好的显示.
+API: http://www.webxml.com.cn/WebServices/WeatherWebService.asmx/getWeatherbyCityName?theCityName=上海
+
+2. 文件操作
+文件内容如下:
+global
+    log 127.0.0.1 local2
+    daemon
+    maxconn 256
+    log 127.0.0.1 local2 info
+defaults
+    log global
+    mode http
+    timeout connect 5000ms
+    timeout client 50000ms
+    timeout server 50000ms
+    option dontlognull
+listen stats :8888
+    stats enable
+    stats uri       /admin
+    stats auth      admin:1234
+frontend oldboy.org
+    bind 0.0.0.0:80
+    option httplog
+    option httpclose
+    option   forwardfor
+    log global
+    acl www hdr_reg(host) -i www.oldboy.org
+    use_backend www.oldboy.org if www
+backend www.oldboy.org
+    server 100.1.7.9 100.1.7.9 weight 20 maxconn 3000
+    server 100.1.7.8 100.1.7.8 weight 20 maxconn 3000
+    server 100.1.7.7 100.1.7.6 weight 20 maxconn 3000
+backend buy.oldboy.org
+    server 100.1.7.90 100.1.7.90 weight 20 maxconn 3000
+
+需求:
+1. 获取内容
+    当用户通过input输入 www.oldboy.org 则将其下面内容添加到列表中返回给用户
+    即: li = [
+        "server 100.1.7.9 100.1.7.9 weight 20 maxconn 3000",
+        "server 100.1.7.8 100.1.7.8 weight 20 maxconn 3000",
+        "server 100.1.7.7 100.1.7.6 weight 20 maxconn 3000"
+        ]
+2. 设置内容
+    当用户通过input输入
+    {"backend":"www.oldboy.org", "record":{"server":"100.1.7.6","weight":20,"maxconn":30}}
+    则在文件的backend www.oldboy.org 下新插入一条记录:
+    serverstattask100.1.7.6 100.1.7.6 weight 20 maxconn 3000
+# 注: 由于文件直接修改时会覆盖原有内容, 所以, 可利用同时打开两个文件, 边读边写, 当达到指定内容时, 将新内容插入.
+
+## 附加题
+1. 公鸡5文钱一只, 母鸡3文钱一只, 小鸡三只1文钱, 用100文钱买100只鸡, 其中公鸡, 母鸡, 小鸡都必须有, 问公鸡, 母鸡, 小鸡要买多少只刚好凑足100文钱
+
+2. 猴子第一天摘下若干个桃子, 当即吃了一半, 还不过瘾就多吃了一个, 第二天早上又将剩下的桃子吃了一半, 还是不过瘾有多吃了一个, 以后每天都吃前一天剩下的一半再加一个. 到第10天刚好剩一个, 问猴子第一天摘了多少个桃子.

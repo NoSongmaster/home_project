@@ -1,0 +1,354 @@
+1、执行Python 脚本的两种方式
+    python *.py     使用python解释器执行
+    ./*.py          使用py文件内部声明的python解释器执行
+2、简述位、字节的关系
+   1字节=8bit  1byte=8bit
+3、简述ascii、unicode、utf-8、gbk 的关系
+    ascii码是最初的字符编码，使用一个字节编码，它支持的范围只有英文，数字和一些特殊符号，只有256个字符。
+    unicode是国际标准组织统一制定的适合所有国家的万国码，统一所有的字符，占用两个字节。
+    utf-8是unicode推出的可变长的编码集，规定英文字符占一个字节，而汉字占三个字节
+    gbk中国自己开发的编码集，在unicode出现之前，一个汉字占用两个字节，英文占用一个字节。
+    gbk转化为unicode转化为utf-8
+    
+4、请写出“李杰”分别用utf-8 和gbk 编码所占的位数
+    在utf-8中占用6个字节
+    在gbk中占用4个字节
+5、Pyhton 单行注释和多行注释分别用什么？
+    单行注释使用：#注释内容
+    多行注释使用：'''注释内容'''
+6、声明变量注意事项有那些？
+    1、不能使用系统关键字的字符串做变量名
+    2、变量名可以包括字母、数字、下划线，但是数字不能做为开头
+    3、Python的变量名是除分大小写的，例如：name和Name就是两个变量名
+8、如何查看变量在内存中的地址?
+    >>> name=123
+    >>> id(name)
+    1802572048
+9、执行Python 程序时，自动生成的.pyc文件的作用是什么？
+    .pyc文件是在python程序编译后产生的二进制文件，再次执行python程序时，会直接执行.pyc文件，启动速度会有所提升。
+10、写代码
+a.实现用户输入用户名和密码，当用户名为seven且密码为123时，显示登陆成功，否则登陆失败！
+   name=input("输入用户名:")
+   passwd=input("输入密码:")
+   if name=='seven' and passwd =='123':
+      print("登录成功")
+   else:
+      print("登录失败")
+b.实现用户输入用户名和密码，当用户名为seven且密码为123时，显示登陆成功，否则登陆失败，失败时允许重复输入三次
+   count=0
+   while count < 3:
+        name=input("输入用户名:")
+        passwd=input("输入密码:")
+        if name=='seven' and passwd =='123':
+            print("登录成功")
+            exit()
+        else:
+            print("登录失败")
+            count+=1
+c.实现用户输入用户名和密码，当用户名为seven或alex且密码为123时，显示登陆成功，否则登陆失败，失败时允许重复输入三次
+   count = 0
+   while count < 3:
+     name = input("输入用户名:")
+     passwd = input("输入密码:")
+     if name == 'seven' or name=='alex' and passwd == '123':
+         print("登录成功")
+     else:
+         print("登录失败")
+         count += 1
+11、写代码
+a.使用while 循环实现输出2-3+4-5+6...+100的和
+    n=2
+    num=0
+    while n < 101:
+        if n%2==0:
+            count=n-(n+1)
+        else:
+            count=n+(n+1)
+        num+=count
+        n=n+1
+    print(num)
+   
+b.使用for 循环和range 实现输出1-2+3-4+5-6...+99的和
+    num=0
+    for i in range(1,100):
+        if i%2==1:
+            count=i-(i+1)
+        elif i%2==0:
+            count=i+i+1
+        num+=count
+    print(num)
+c.使用while 循环实现输出1，2，3，4，5，7，8，9，11，12
+    n=5 #规律
+    a=2 #规律
+    num=1   #输出数 
+    count=0   
+    while a>=0:
+        while count<n:
+            print(num)
+            num=num+1
+            count+=1
+        num=num+1
+        n = n - a
+        a-=1
+        count=0
+d.使用while 循环实现输出1-100内的所有奇数
+    n=1
+    while n<=100:
+        if n%2==1:
+            print(n)
+        n+=1
+e.使用while 循环实现输出1-100内的所有偶数
+    n=1
+    while n<=100:
+        if n%2==0:
+            print(n)
+        n+=1
+12、分别书写数字5，10，32，7 的二进制表示
+    5:00000101
+    10:00001010
+    32:00100000
+    7:00000111
+13、简述对象和类的关系（可用比喻的手法）
+    类比做一个人，对象就是人的特点：口、眼、耳、鼻、手之类的
+    
+    
+14、现有如下两个变量，请简述n1和n2是什么关系？n1=123 n2=123
+    n1和n2指向同一块内存地址，只是调取的变量名不一样。python内部的优化机制
+    >>> n1=123
+    >>> n2=123
+    >>> print(id(n1),id(n2))
+    1802572048 1802572048
+        
+15、现有如下两个变量，请简述n1和n2是什么关系？n1=123456 n2=123456
+    n1和n2指向不同的内存空间，因为超出-5...257,以外的数字，当再次赋值给新的变量时，会重新开辟一份内存空间。
+    >>> n1=123
+    >>> n2=123
+    >>> print(id(n1),id(n2))
+    1802572048 1802572048
+16、现有如下两个变量，请简述n1和n2是什么关系？n1=123456 n2=n1
+    将n2指向n1的内存空间，同一个内存空间，两个读取的变量。
+17、如有一下变量n1=5，请使用int的提供的方法，得到该变量最少可以用多少个二进制位表示？
+    print(int.bit_length(n))
+18、布尔值分别有什么？
+    True,False
+19、阅读代码，请写出执行结果a="alex" b=a.capitalize() print(a) print(b)请写出输出结果：
+    "alex" "Alex"
+20、写代码，有如下变量，请按照要求实现每个功能name="aleX"
+a.移除name 变量对应的值两边的空格，并输入移除有的内容
+    print(name.strip(" "))
+b.判断name 变量对应的值是否以"al"开头，并输出结果
+    print(name.startswith('al'))
+c.判断name 变量对应的值是否以"X"结尾，并输出结果
+    print(name.endswith('X'))
+d.将name 变量对应的值中的“l”替换为“p”，并输出结果
+    print(name.replace('l','p'))
+e.将name 变量对应的值根据“l”分割，并输出结果。
+    print(name.split('l'))
+f.请问，上一题e分割之后得到值是什么类型？
+    list 列表类型
+g.将name 变量对应的值变大写，并输出结果
+    print(name.upper())
+h.将name 变量对应的值变小写，并输出结果
+    print(name.lower())
+i.请输出name 变量对应的值的第2个字符？
+    print(name[1])
+j.请输出name 变量对应的值的前3个字符？
+    print(name[:3])
+k.请输出name 变量对应的值的后2个字符？
+    print(name[-2:])
+l.请输出name 变量对应的值中“e”所在索引位置？
+    print(name.index('e'))
+21、字符串是否可迭代？如可以请使用for 循环每一个元素？
+    字符串可以迭代。例如：
+    name ='alex'
+    for i in name:
+        print(i)
+22、请用代码实现：利用下划线将列表的每一个元素拼接成字符串，li＝['alex','eric','rain']
+    li = ['alex','eric','rain']
+    res='_'.join(li)
+    print(res)
+22、写代码，有如下列表，按照要求实现每一个功能li＝['alex','eric','rain']
+a.计算列表长度并输出
+    print(len(li))
+b.列表中追加元素“seven”，并输出添加后的列表
+    li.append('seven')
+    print(li)
+    输出： ['alex', 'eric', 'rain', 'seven']
+c.请在列表的第1个位置插入元素“Tony”，并输出添加后的列表
+    li.insert(0,'Tony')
+    print(li)
+    输出：['Tony', 'alex', 'eric', 'rain']
+d.请修改列表第2个位置的元素为“Kelly”，并输出修改后的列表
+    li[1]='Kelly'
+    print(li)
+    输出：['alex', 'Kelly', 'rain']
+e.请删除列表中的元素“eric”，并输出修改后的列表
+    li.remove('eric')
+    print(li)
+f.请删除列表中的第2个元素，并输出删除的元素的值和删除元素后的列表
+   print(li.pop(1))
+    print(li)
+g.请删除列表中的第3个元素，并输出删除元素后的列表
+   li.pop(2)
+   print(li)
+h.请删除列表中的第2至4个元素，并输出删除元素后的列表
+li = ['alex', 'eric', 'rain','oldboy']
+for i in li[1:5]:
+    li.remove(i)
+print(li)
+i.请将列表所有的元素反转，并输出反转后的列表
+    li = ['alex', 'eric', 'rain','oldboy']
+    li.reverse()
+    print(li) 
+输出：['oldboy', 'rain', 'eric', 'alex']
+j.请使用for、len、range 输出列表的索引
+
+    li = ['alex', 'eric', 'rain']
+    for i in range(len(li)):print(i)
+    
+k请使用enumrate 输出列表元素和序号（序号从100 开始）
+    li = ['alex', 'eric', 'rain']
+    for k,v in enumerate(li,100):
+        print(v,k)
+l.请使用for循环输出列表的所有元素
+    li = ['alex', 'eric', 'rain']
+    for i in li:
+        print(i)
+23、写代码，有如下列表，请按照功能要求实现每一个功能
+li = ["hello", 'seven', ["mon", ["h", "kelly"], 'all'], 123, 446]
+a.请输出“Kelly”
+    print(li[2][1][1])
+b.请使用索引找到'all'元素并将其修改为“ALL”
+    li[2][2]='ALL'
+24、写代码，有如下元组，按照要求实现每一个功能
+tu = ('alex', 'eric', 'rain')
+a.计算元组长度并输出
+    tu = ('alex', 'eric', 'rain')
+    print(len(tu))
+b.获取元组的第2个元素，并输出
+    print(tu[1])
+c.获取元组的第1-2个元素，并输出
+    print(tu[:2])
+d.请使用for输出元组的元素
+    for i in tu:
+        print(i)
+e.请使用for、len、range 输出元组的索引
+    for i in range(len(tu)):
+        print(i)
+f.请使用enumrate 输出元祖元素和序号（序号从10 开始）
+    for k,v in enumerate(tu,10):
+        print(k,v)
+25、有如下变量，请实现要求的功能
+tu=("alex",[11,22,{"k1":'v1',"k2":["age","name"],"k3":(11,22,33)},44])
+a.讲述元组的特性：
+    创建完成后不可以删除，增加修改里面的元素
+b.请问tu 变量中的第一个元素“alex”是否可被修改？
+    不可以
+c.请问tu 变量中的"k2"对应的值是什么类型？是否可以被修改？如果可以，请在其中添加一个元素“Seven”
+    列表，可以被修改。
+    tu[1][2]['k2'].append("Seven")
+d.请问tu 变量中的"k3"对应的值是什么类型？是否可以被修改？如果可以，请在其中添加一个元素“Seven”
+    元组，不可以修改
+26、字典
+dic={'k1':"v1","k2":"v2","k3":[11,22,33]}
+a.请循环输出所有的key
+    for i in dic:
+        print(i)
+b.请循环输出所有的value
+    for v in dic.values():
+        print(v)
+c.请循环输出所有的key 和value
+    for k in dic:
+        print(k,dic[k])
+d.请在字典中添加一个键值对，"k4":"v4"，输出添加后的字典
+    dic['k4']='v4'
+    print(dic)
+    输出：{'k1': 'v1', 'k4': 'v4', 'k3': [11, 22, 33], 'k2': 'v2'}
+e.请在修改字典中“k1”对应的值为“alex”，输出修改后的字典
+    dic['k1']='alex'
+    print(dic)
+    输出：{'k3': [11, 22, 33], 'k1': 'alex', 'k2': 'v2'}
+f.请在k3 对应的值中追加一个元素44，输出修改后的字典
+    dic['k3'].append(44)
+    print(dic)
+    输出：{'k3': [11, 22, 33, 44], 'k1': 'v1', 'k2': 'v2'}
+g.请在k3 对应的值的第1个位置插入个元素18，输出修改后的字典
+    dic['k3'].insert(0,18)
+    print(dic)
+    输出：{'k2': 'v2', 'k3': [18, 11, 22, 33], 'k1': 'v1'}
+27、转换
+a.将字符串s="alex"转换成列表
+    list(s)
+
+b.将字符串s="alex"转换成元祖
+    tuple(s)
+b.将列表li=["alex","seven"]转换成元组
+    tuple(li)
+c.将元祖tu=('Alex',"seven")转换成列表
+    list(tu)
+d.将列表li=["alex","seven"]转换成字典且字典的key 按照10开始向后递增
+    count=10
+    dic={}
+    for i in li :
+        dic[count]=i
+        count+=1
+    print(dic)
+27、转码
+n="老男孩"
+a.将字符串转换成utf-8 编码的字节，并输出，然后将该字节再转换成utf-8 编码字符串，再输出
+    print(n.encode('utf-8'))
+    print(n.encode('utf-8').decode('utf-8'))
+b.将字符串转换成gbk 编码的字节，并输出，然后将该字节再转换成gbk 编码字符串，再输出
+    print(n.encode('gbk'))
+    print(n.encode('gbk').decode('gbk'))
+28、求1-100 内的所有数的和
+    num=0
+    for i in range(1, 101):
+        num += i
+        i += 1
+    print(num)
+29、元素分类有如下值集合[11,22,33,44,55,66,77,88,99,90]，将所有大于66的值保存至字典的第一个key 中，
+将小于66的值保存至第二个key 的值中。即：
+{'k1':大于66 的所有值,'k2':小于66 的所有值}
+dic={'k1':[],'k2':[]}
+for i in [11,22,33,44,55,66,77,88,99,90]:
+    if i > 66:
+        dic['k1'].append(i)
+    elif i <66:
+        dic['k2'].append(i)
+print(dic)
+30、购物车
+功能要求：
+要求用户输入总资产，例如：2000
+显示商品列表，让用户根据序号选择商品，加入购物车
+购买，如果商品总额大于总资产，提示账户余额不足，否则，购买成功。
+代码：
+    salary=int(input("请输入工资:").strip())
+    shop_car=[]
+    shop_sum=0
+    while True:
+        list =[
+            ['iphone7', 6500],
+            ['macbook', 12000],
+            ['pythonbook', 66],
+            ['bike', 999],
+            ['coffee', 31]
+        ]
+        print("shopping mall".center(50,'-'))
+        for k,v in enumerate(list):
+            print(k,v)
+        choice=int(input("商品编号>>").strip())
+        shop_car.append(list[choice])
+        shop_sum+=list[choice][1]
+        quer=input("确认付款:[yes],继续购物[other]")
+        if quer == 'yes':
+            if shop_sum <=salary:
+                print("付款成功")
+                exit()
+            else:
+                print("账户余额不足")
+                exit()
+
+
+
+
