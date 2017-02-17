@@ -22,3 +22,7 @@ shopping_mall/shopping  购物商场入口
 ATM/core/    程序文件
 db/accounts/ 存储用户信息文件
 log/         存储用户log文件
+
+#已创建用户名密码：
+账户id:123    密码：123
+账户id:123456 密码：123456
