@@ -275,6 +275,12 @@ class FTPHandler(socketserver.BaseRequestHandler):
                     print(res1_dict)
                     self.send_head(res1_dict)
             return False
+        else:
+            res1_dict = {'ddfile_size': 0,
+                         'dd': False
+                         }
+            print(res1_dict)
+            self.send_head(res1_dict)
 
 
 
