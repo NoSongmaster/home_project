@@ -234,9 +234,9 @@ class FTPHandler(socketserver.BaseRequestHandler):
         md5_dd=hashlib.md5()
         file_abs_path = "%s/%s" % (self.current_dir, recv_dict.get('filename'))
         print(file_abs_path)
-        server_file_size=os.path.getsize(file_abs_path)
-
+        print(os.path.exists(file_abs_path))
         if os.path.exists(file_abs_path):
+            server_file_size = os.path.getsize(file_abs_path)
             if os.path.isfile(file_abs_path):
                 print('server_size:',server_file_size)
                 print('client_size:',recv_dict.get('file_size'))
@@ -279,8 +279,9 @@ class FTPHandler(socketserver.BaseRequestHandler):
             res1_dict = {'ddfile_size': 0,
                          'dd': False
                          }
-            print(res1_dict)
+            print('文件不存在：',res1_dict)
             self.send_head(res1_dict)
+            return False
 
 
 
