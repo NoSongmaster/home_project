@@ -313,9 +313,7 @@ class FTPClient(object):
                 print('一致性校验通过')
             else:print('断点续传有问题')
             return True
-        else:
-            print('文件不存在断点--开始执行上传功能')
-            return False
+        else:return False
 
 
     def _get(self,cmd_list):
