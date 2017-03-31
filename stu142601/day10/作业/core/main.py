@@ -107,7 +107,7 @@ class myconn(object):
             id_str=input('请输入想要操作的主机id,[批量操作,分割]').strip(',')
             if not id_str:continue
             id_list=id_str.split(',')
-            print(self.all_host)
+            #print(self.all_host)
             for id_tt in id_list:
 
                 flag = 0
