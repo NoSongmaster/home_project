@@ -68,12 +68,12 @@ class myconn(object):
         # self.ssh.close()
 
     def excute(self,data):
-        time.sleep(2)
+        #time.sleep(2)
         cmd_str, id_num=data[0],data[1]
         cursor = self.conn.cursor(cursor=pymysql.cursors.DictCursor)
         cursor.execute("select ip,port,username,pwd_type,password from host where host_id=%s", (int(id_num)))
         host_data = cursor.fetchall()
-        print(host_data)
+        #print(host_data)
         # print('正在执行：',id_num)
         for host in host_data:
 
@@ -104,7 +104,7 @@ class myconn(object):
 
     def command(self):
         while True:
-            id_str=input('请输入想要操作的主机id,[批量操作,分割]').strip(',')
+            id_str=input('请输入想要操作的主机id,[批量操作,分割]：').strip(',')
             if not id_str:continue
             id_list=id_str.split(',')
             #print(self.all_host)
@@ -122,7 +122,7 @@ class myconn(object):
                     print('\033[31;1m ID 错误:%s\033[0m'%id)
                     break
             if flag!=0:
-                cmd_str=input('请输入要操作的命令')
+                cmd_str=input('请输入要操作的命令：')
 
                 for id_num in id_list:
                     print('开始执行:',id_num)
