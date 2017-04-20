@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>作业v2</title>
+    <link rel="stylesheet" href="font-awesome-4.6.3/font-awesome-4.6.3/css/font-awesome.css">
+    <style>
+        .hide{
+            display: none;
+        }
+        body{
+            margin: 0;
+        }
+        .right{
+            float: right;
+        }
+        .left{
+            float: left;
+        }
+        .pg-header{
+            height: 48px;
+            background-color: cadetblue;
+            line-height: 48px;
+            /*解决窗口缩小左右滚动条滑动问题*/
+            min-width: 1000px;
+        }
+        .logo{
+            width: 200px;
+            background-color: bisque;
+            text-align: center;
+            color: white;
+            font-size: 26px;
+            font-family:"宋体",Tahoma,Arial,Helvetica,STHeiti;
+        }
+        /*找到class是item的a标签*/
+        .pg-header .user-info a.item{
+            display: inline-block;
+            padding: 0 10px;
+
+        }
+         .pg-header .user-info a.item:hover{
+             background-color: blanchedalmond;
+         }
+        .pg-header .avatar{
+            height: 40px;
+            width: 40px;
+            /*overflow: hidden超过40*40就隐藏
+             overflow: scroll; 表示如果超出就出现滚动条
+            */
+            padding: 4px 10px;
+            margin-right: 20px;
+            position: relative;
+        }
+        .pg-header .avatar .user-menu{
+            position: absolute;
+            width: 180px;
+            border: 1px solid red;
+            top: 48px;
+            right: 0px;
+            display: none;
+            z-index: 100;
+            background-color: cadetblue;
+        }
+        .pg-header .avatar .user-menu a{
+            display: block;
+        }
+        /*当鼠标放置到用户头像的div上面,用户菜单display属性设置为block，否则为none*/
+        .pg-header .avatar:hover .user-menu{
+            display: block;
+        }
+        .pg-body .menus{
+            position: absolute;
+            top: 48px;
+            left: 0;
+            bottom: 0;
+            width: 200px;
+            background-color: #204982;
+            align-content: center;
+            text-align: center;
+        }
+        .pg-body{
+            /*解决窗口缩小左右滚动条滑动问题*/
+            min-width: 1000px;
+        }
+        .pg-body .content{
+            position: absolute;
+            top: 48px;
+            left: 200px;;
+            bottom: 0;
+            right: 0;
+            background-color: chocolate;
+            overflow: scroll;
+            /*解决窗口缩小左右滚动条滑动问题*/
+            min-width: 800px;
+             z-index: 99;
+        }
+        .menus-item .menus-title{
+            height: 40px;
+            background-color: #4b4dff;
+            line-height: 40px;
+            border-radius: 23px;
+            border: 1px solid #ededed;
+
+        }
+        .menus-item .menus-content a{
+            display: block;
+        }
+        .content{
+
+        }
+        .host-checkbox{
+            display: inline-block;
+            top: 48px;
+            width: 270px;
+            height: 170px;
+            background-color: #ededed;
+        }
+        .host-checkbox input{
+            width: 50px;
+            margin-left: 20px;
+        }
+        .add-li{
+            top: 48px;
+            width: 270px;
+            height: 170px;
+            background-color: olivedrab;
+            text-align: center;
+        }
+        .move-text{
+            display: inline-block;
+            top: 48px;
+            width: 270px;
+            height: 170px;
+            background-color: chartreuse;
+        }
+    </style>
+</head>
+<body>
+    <div class="pg-header">
+        <div class="logo left">运维平台</div>
+
+        <div class="avatar right">
+            <!--这里是用户的头像,
+            /*overflow: hidden超过40*40就隐藏*/
+            img的style长宽都是100%会自动缩放，
+            border-radius圆滑-->
+
+            <a style="overflow: hidden;"><img  style="height: 100%;width: 100%;border-radius: 50%" src="妹子.jpg" alt=""></a>
+            <!--用户菜单,默认不显示，当鼠标放到用户头像上才会显示-->
+            <div class="user-menu">
+                <a href="#"> 个人资料</a>
+                <a href="#">注销</a>
+            </div>
+        </div>
+        <div class="user-info right">
+            <a class="item"><i style="font-size: 20px;color: rebeccapurple" class="fa fa-cloud" aria-hidden="true"></i></a>
+            <a class="item"><i style="font-size: 20px;color: rebeccapurple" class="fa fa-bell-o" aria-hidden="true"></i></a>
+            <a class="item" href="#">登录</a>
+            <a class="item" href="#">注册</a>
+        </div>
+        <div class="user-info right ">
+            <form id="f1" action="http://www.baidu.com">
+            <input id='key' style="display:inline-block;height: 35px" type="text" name="seach" value="请输入要搜索的内容" onfocus="keyFocus()" onblur="keyBlur()">
+            <input type="submit" value="搜索" />
+                <div onclick="submitForm();" >asdf</div>
+            </form>
+        </div>
+
+
+    </div>
+    <div class="pg-body">
+        <div class="menus">
+            <div class="menus-item">
+                <div class="menus-title" onclick=chageMenu(this)>菜单1</div>
+                <div class="menus-content hide">
+                    <a >内容1</a>
+                    <a >内容1</a>
+                    <a >内容1</a>
+                </div>
+            </div>
+            <div class="menus-item">
+                <div class="menus-title" onclick=chageMenu(this)>菜单2</div>
+                <div class="menus-content hide">
+                    <a >内容2</a>
+                    <a >内容2</a>
+                    <a >内容2</a>
+                </div>
+            </div>
+            <div class="menus-item">
+                <!--onclick=chageMenu(this)配合script使用，当用户点击到这里会执行下面的chageMenu函数-->
+                <div class="menus-title" onclick=chageMenu(this)>菜单3</div>
+                <div class="menus-content hide">
+                    <a >内容3</a>
+                    <a >内容3</a>
+                    <a >内容3</a>
+                    <a >内容3</a>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="host-checkbox">
+                <a style='display: block;text-align: center;font-size: 25px' href="">主机选取</a>
+                <input type="button" value="全选" onclick="checkAll()">
+                <input type="button" value="取消" onclick="removeAll()">
+                <input type="button" value="反选" onclick="reverseAll()">
+                <table border="1">
+                <thead>
+                    <tr>
+                        <th>选项</th>
+                        <th>主机名</th>
+                        <th>端口</th>
+                    </tr>
+                </thead>
+                <tbody id="tb">
+                    <tr>
+                        <td>
+                            <input type="checkbox">
+                        </td>
+                        <td>www.baidu.com</td>
+                        <td>8080</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>www.sina.com</td>
+                        <td>80</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>www.taobao.com</td>
+                        <td>443 </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="add-li">
+                <a style="display: block;text-align: center;font-size: 25px">添加标签</a>
+                <input type="text" id="inp">
+                <input type="button" value="添加" onclick="addElement()">
+                <ul id="container">
+                    <li>内容1</li>
+                </ul>
+            </div>
+            <div class="move-text">
+                <div id="i1">欢迎李磊今天来上课</div>
+                <div id="i2"></div>
+                <a style="display: block;background-color: brown" > 删除后5秒后消失</a>
+                <input type="button" value="删除" onclick="removeEle();" />
+                <div id="i3"></div>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        function chageMenu(currentTagObj) {
+            //当前正在点击的标签
+//          点击菜单-获取他的兄弟标签-----内容所属的div,
+            var contentTagObj=currentTagObj.nextElementSibling
+//            contentTagObj.classList.remove('hide')
+
+            console.log(contentTagObj.classList['value'])
+//           遍历标签中的class--，如果有hide 就去掉，如果没有就加上
+            var value_list=contentTagObj.classList['value'].split(' ')      //            value_list属于字典的列表
+            for ( var line in value_list){              //            获取列表的索引
+                if ('hide' ==value_list[line]){
+                    contentTagObj.classList.remove('hide')
+                }
+                else{
+                    contentTagObj.classList.add('hide')
+                }
+            }
+            //itemObjList 找的是三个菜单的大的div列表----
+            var itemObjList=currentTagObj.parentElement.parentElement.children
+
+            for(var i=0;i<itemObjList.length;i++){
+                //i 取到的是列表的索引。
+                var loopItemObj=itemObjList[i];
+                if (loopItemObj != contentTagObj.parentElement){
+                    //loopItemObj 找到的是菜单的整个div---下面还有两个div-1.title  2.content
+                    console.log(loopItemObj)
+                    loopItemObj.lastElementChild.classList.add('hide')
+
+                }
+            }
+        }
+        function keyFocus() {
+            console.log('获取焦点')
+            var val2=document.getElementById('key').value
+            if( val2 == '请输入要搜索的内容'){
+                document.getElementById('key').value=''
+            }else {
+
+                }
+        }
+        function keyBlur() {
+            console.log('失去焦点')
+            var val=document.getElementById('key').value
+            if (val.length > 0){
+
+            }else{
+                document.getElementById('key').value='请输入要搜索的内容'
+            }
+
+
+        }
+        function checkAll() {
+            var trList=document.getElementById('tb').children
+            for(var i=0;i<trList.length;i++){
+                var tr=trList[i]
+                //tr.td.input
+                tr.firstElementChild.firstElementChild.checked=true
+            }
+        }
+        function removeAll() {
+            var trList=document.getElementById('tb').children
+            for(var i=0;i<trList.length;i++){
+                var tr=trList[i]
+                //tr.td.input
+                tr.firstElementChild.firstElementChild.checked=false
+
+            }
+        }
+        function reverseAll() {
+            var trList=document.getElementById('tb').children
+            for(var i=0;i<trList.length;i++){
+                var tr=trList[i]
+                if (tr.firstElementChild.firstElementChild.checked){
+                    tr.firstElementChild.firstElementChild.checked=false
+                }else {
+                    tr.firstElementChild.firstElementChild.checked=true
+                }
+
+            }
+        }
+        function addElement() {
+            var val = document.getElementById('inp').value
+            var tag =document.createElement('li')
+            tag.innerHTML=val
+            document.getElementById('container').appendChild(tag)
+            val = document.getElementById('inp').value=''
+
+        }
+        setInterval(function(){var txt = document.getElementById('i1').innerText;var a = txt.charAt(0);var b = txt.substring(1,txt.length);var new_txt = b + a;document.getElementById('i1').innerText = new_txt;},500);
+        function currentDate() {
+            var da = new Date();
+
+            var year = da.getFullYear();
+            var month = da.getMonth()  + 1;
+            var day = da.getDate();
+
+            var hours = da.getHours();
+            var minutes = da.getMinutes();
+            var seconds = da.getSeconds();
+
+            var txt = year + "-" + month + "-" + day + " " + hours+":"+minutes+":"+seconds;
+
+            document.getElementById('i2').innerHTML = txt;
+        }
+        function submitForm() {
+            document.getElementById('f1').submit();
+        }
+        setInterval(currentDate,1000);
+        function removeEle() {
+            document.getElementById('i3').innerHTML = "删除成功";
+
+            var obj = setTimeout(function () {
+                document.getElementById('i3').innerHTML = "";
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
