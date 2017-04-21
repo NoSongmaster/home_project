@@ -133,6 +133,28 @@
             height: 170px;
             background-color: chartreuse;
         }
+        .modal{
+            height: 300px;
+            width: 400px;
+            background-color: white;
+            position: fixed;
+            left: 50%;
+            margin-left: -200px;
+            top: 50%;
+            margin-top: -150px;
+            z-index: 103;
+        }
+        .zz{
+            position: fixed;
+            background-color: black;
+            top:0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 102;
+            opacity: 0.4;
+        }
+
     </style>
 </head>
 <body>
@@ -148,15 +170,15 @@
             <a style="overflow: hidden;"><img  style="height: 100%;width: 100%;border-radius: 50%" src="妹子.jpg" alt=""></a>
             <!--用户菜单,默认不显示，当鼠标放到用户头像上才会显示-->
             <div class="user-menu">
-                <a href="#"> 个人资料</a>
+                <a href=""> 个人资料</a>
                 <a href="#">注销</a>
             </div>
         </div>
         <div class="user-info right">
             <a class="item"><i style="font-size: 20px;color: rebeccapurple" class="fa fa-cloud" aria-hidden="true"></i></a>
             <a class="item"><i style="font-size: 20px;color: rebeccapurple" class="fa fa-bell-o" aria-hidden="true"></i></a>
-            <a class="item" href="#">登录</a>
-            <a class="item" href="#">注册</a>
+            <a class="item" href="#" onclick="showDiv()">登录</a>
+            <a class="item" href="#" onclick="showDiv()">注册</a>
         </div>
         <div class="user-info right ">
             <form id="f1" action="http://www.baidu.com">
@@ -250,6 +272,12 @@
 
         </div>
     </div>
+    <div id="m2" class="zz hide"></div>
+    <div id="m1" class="modal hide">
+        <input style='display: inline-block;width: 50px;height: 30px;' type="button" value="返回" onclick="hideDiv();" />
+        <a style='display: block' href="">暂时没有开放登录和注册</a>
+    </div>
+
     <script>
         function chageMenu(currentTagObj) {
             //当前正在点击的标签
@@ -365,6 +393,14 @@
             var obj = setTimeout(function () {
                 document.getElementById('i3').innerHTML = "";
             }, 5000);
+        }
+        function showDiv() {
+            document.getElementById('m1').classList.remove('hide');
+            document.getElementById('m2').classList.remove('hide');
+        }
+        function hideDiv() {
+            document.getElementById('m1').classList.add('hide');
+            document.getElementById('m2').classList.add('hide');
         }
     </script>
 </body>
