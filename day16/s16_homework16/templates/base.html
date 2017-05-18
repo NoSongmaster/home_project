@@ -1,0 +1,224 @@
+<head>
+    <meta charset="UTF-8">
+    <!--<meta name="kewords" content="抽屉新热榜,资讯,段子,图片,公众场合不宜,科技,新闻,节操,搞笑">-->
+    <!--<meta http-equiv="X-UA-COMPATIBLE" content="IE=Edge">-->
+    <link  href="/static/hello/chouti.ico" rel="icon shortcut" >
+    <title>抽屉新热榜-聚合每日热门、搞笑、有趣资讯</title>
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        *{
+            margin: 0;
+        }
+        .w{
+            width: 980px;
+            margin: auto;
+        }
+        .left{
+            float: left;
+        }
+        .right{
+            float: right;
+        }
+        .top_nav{
+            height: 48px;
+            background-color: #2459a2;
+        }
+        img{
+            height: 48px;
+        }
+        .nav_item{
+            display: inline-block;
+            width: 70px;
+            /*background-color: aqua;*/
+            /*height: 48px;*/
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            line-height: 48px;
+        }
+        .nav_item:hover{
+            background-color: #204982;
+        }
+        .page{
+            background-color: #ededed;
+        }
+        .body{
+            background-color: white;
+        }
+        .left_body{
+            width: 700px;
+            /*height: 600px;*/
+            border: 1px solid transparent;
+        }
+        .right_body{
+            width: 275px;
+            border: 1px solid red;
+            height: 600px;
+        }
+        .article{
+            /*padding: 10px;*/
+
+            margin-bottom: 20px;
+        }
+        .article_item{
+            padding: 10px;
+            margin: 10px;
+            border-bottom: 1px solid #ddd;
+            /*margin-bottom: 10px;*/
+        }
+        .article_title{
+            font-size: 14px;
+            font-weight: 700;
+            color: #2459a2;
+        }
+        .content{
+            font-size: 13px;
+        }
+        .nav_2{
+            display: inline-block;
+            float: right;
+            line-height: 48px;
+            width: 80px;
+            color: white;
+            text-align: center;
+        }
+        .nav_2:hover{
+            background-color: #204982;
+        }
+        .seach{
+            display: inline-block;
+            float: right;
+            line-height: 30px;
+            width: 100px;
+            text-align: center;
+        }
+        {% block head_css %}
+        {% endblock %}
+    </style>
+</head>
+<body>
+
+
+<div class="page">
+
+    <div class="top_nav">
+        <div class="nav_bar w">
+            <img class='left' src="/static/hello/1.png" alt="">
+            <a href="/login" class="nav_item">全部</a>
+            <a href="/qu42" class="nav_item">42区</a>
+            <a href="/duanzi" class="nav_item">段子</a>
+            <a href="/tupian" class="nav_item">图片</a>
+            <a href="/it1024" class="nav_item">挨踢1024</a>
+            <a href="/niwen" class="nav_item">你问我答</a>
+            {% if yonghu %}
+                <button type="button" class="btn btn-default btn-sm">
+	<span class="glyphicon glyphicon-user" style="color: rgb(109, 104, 67); font-size: 15px;"> &nbsp</span>{{ yonghu }}
+</button>
+            {% else %}
+            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#denglu">登录
+            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#zhuce">注册
+            {% endif %}
+        </div>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="denglu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <form role="form" action="/login" method="post">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					用户注册
+				</h4>
+			</div>
+			<div class="modal-body">
+
+                <div class="form-group">
+            <label for="name">name</label>
+            <input type="text" class="form-control" id="name" name="name"
+                   placeholder="请输入名称">
+	    </div>
+                <div class="form-group">
+            <label for="name">password</label>
+            <input type="password" class="form-control" id="name" name="pwd"
+                   placeholder="请输入名称">
+	    </div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+				</button>
+				<button type="submit" class="btn btn-primary">
+					提交更改
+				</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+    </form>
+</div>
+<div class="modal fade" id="zhuce" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <form role="form" action="/add" method="post">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					用户注册
+				</h4>
+			</div>
+			<div class="modal-body">
+
+                <div class="form-group">
+            <label for="name">name</label>
+            <input type="text" class="form-control" id="name" name="name"
+                   placeholder="请输入名称">
+	    </div>
+                <div class="form-group">
+            <label for="name">password</label>
+            <input type="password" class="form-control" id="name" name="pwd"
+                   placeholder="请输入名称">
+	    </div>
+                <div class="form-group">
+            <label for="name">age</label>
+            <input type="text" class="form-control" id="name" name="age"
+                   placeholder="请输入名称">
+	    </div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+				</button>
+				<button type="submit" class="btn btn-primary">
+					提交更改
+				</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+    </form>
+</div>
+    </div>
+    <div class="body w">
+            <div class="left_body left">
+                <div class="article">
+
+                    {% block article_item %}
+                    {% endblock %}
+
+
+                </div>
+            </div>
+            <div class="right_body right">
+            </div>
+        <div style="clear: both"></div>
+        </div>
+
+    <div>
+
+
+</div>
+{% include "xiabiao.html" %}
+</body>
