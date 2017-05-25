@@ -1,0 +1,145 @@
+<head>
+    <meta charset="UTF-8">
+    {% block head %}
+    {% endblock %}
+    <title>主机管理平台</title>
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        *{
+            margin: 0;
+        }
+        .w{
+            width: 980px;
+            margin: auto;
+        }
+        .left{
+            float: left;
+        }
+        .right{
+            float: right;
+        }
+        .top_nav{
+            height: 48px;
+            background-color: #2459a2;
+        }
+        img{
+            height: 48px;
+        }
+        .nav_item{
+            display: inline-block;
+            width: 110px;
+            /*background-color: aqua;*/
+            /*height: 48px;*/
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            line-height: 48px;
+        }
+        .nav_item:hover{
+            background-color: #204982;
+        }
+        .page{
+            background-color: #ededed;
+        }
+        .body{
+            background-color: white;
+        }
+        .left_body{
+            width: 700px;
+            /*height: 600px;*/
+            border: 1px solid transparent;
+        }
+        .right_body{
+            width: 275px;
+            border: 1px solid red;
+            height: 600px;
+        }
+        .article{
+            /*padding: 10px;*/
+
+            margin-bottom: 20px;
+        }
+        .article_item{
+            padding: 10px;
+            margin: 10px;
+            border-bottom: 1px solid #ddd;
+            /*margin-bottom: 10px;*/
+        }
+        .article_title{
+            font-size: 14px;
+            font-weight: 700;
+            color: #2459a2;
+        }
+        .content{
+            font-size: 13px;
+        }
+        .nav_2{
+            display: inline-block;
+            float: right;
+            line-height: 48px;
+            width: 80px;
+            color: white;
+            text-align: center;
+        }
+        .nav_2:hover{
+            background-color: #204982;
+        }
+        .seach{
+            display: inline-block;
+            float: right;
+            line-height: 30px;
+            width: 100px;
+            text-align: center;
+        }
+        {% block head_css %}
+        {% endblock %}
+    </style>
+</head>
+<body>
+
+
+<div class="page">
+
+    <div class="top_nav">
+        <div class="nav_bar w">
+            <a href="/home" class="nav_item">所有主机列表</a>
+            <a href="/user_host" class="nav_item">用户主机列表</a>
+            <a href="/firm" class="nav_item">业务线管理</a>
+                <button type="button" class="btn btn-default btn-sm right">
+                    <span class="glyphicon glyphicon-user " style="color: rgb(109, 104, 67); font-size: 15px;"> &nbsp</span>{{ yonghu }}
+                </button>
+
+
+        </div>
+
+</div>
+
+</div>
+    <div class="body w">
+            <div class="left_body left">
+                <div class="article">
+
+                    {% block article_item %}
+                    {% endblock %}
+
+
+                </div>
+            </div>
+{#            <div class="right_body right">#}
+{#            </div>#}
+        <div style="clear: both"></div>
+        </div>
+
+    <div>
+
+
+</div>
+{#{% include "xiabiao.html" %}#}
+</body>
+<script src="/static/assets/js/jquery-1.8.2.min.js"></script>
+
+    {% block js %}
+    {% endblock %}
