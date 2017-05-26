@@ -2,7 +2,6 @@
 {% block article_item %}
     <h1>业务线管理</h1>
 
-
     <table border="1" class="table">
         <thead>
             <tr>
@@ -20,13 +19,14 @@
                 <td>{{ row.firm_nam }}</td>
                 <td>
                     <button class="btn btn-primary btn-lg editbut" data-toggle="modal" id=edit{{ row.id }} data-target="#edit">编辑</button>
-                    <button class="btn btn-primary btn-lg addbut " data-toggle="modal" id=add{{ row.id }} data-target="#add">增加</button>
-                    <button class="btn btn-primary btn-lg delbut" data-toggle="modal" id=del{{ row.id }} data-target="#del">删除</button>
+
+                    <button class="btn btn-primary btn-lg delbut" data-toggle="modal" id={{ row.id }} data-target="#del">删除</button>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+<button class="btn btn-primary btn-lg addbut " data-toggle="modal" id=add22 data-target="#add">增加</button>
 
 
     <!-- 模态框（Modal） -->
@@ -82,20 +82,20 @@
 			<div class="modal-body">
 
                 <div class="form-group">
-            <label for="name">主机 ID</label>
-            <input type="text" class="form-control" id="firm_id" name="name"
+            <label for="name">业务线 ID</label>
+            <input type="text" class="form-control" id="addfirm_id" name="name"
                    placeholder="请输入名称">
 	    </div>
                 <div class="form-group">
             <label for="name">部门名称</label>
-            <input type="text" class="form-control" id="firm_name" name="pwd"
+            <input type="text" class="form-control" id="addfirm_name" name="pwd"
                    placeholder="请输入名称">
 	    </div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">关闭
 				</button>
-				<button type="submit" class="btn btn-primary">
+				<button type="submit" class="btn btn-primary tjbtn">
 					提交更改
 				</button>
 			</div>
@@ -106,6 +106,7 @@
 {% endblock %}
 {% block  js %}
     <script>
+    //编辑操作
     $('.editbut').click(function(){
         var firm_id=$(this).parent().siblings().eq(-2)[0].innerText;
         var firm_name=$(this).parent().siblings().eq(-1)[0].innerText;
@@ -138,6 +139,65 @@
 
         }
     });
+    //添加操作
+    $('.tjbtn').click(function () {
+{#                $('.tjbtn').click(binBtnadd())#}
+        binBtnadd();
+        function binBtnadd() {
+            var new_id=$('#addfirm_id').val()
+            var new_name=$('#addfirm_name').val()
+             $.ajax({
+                url:'/add_firm',                            //提交到什么位置
+                type:'POST',                                //提交的类型
+                data:{new_id:new_id,new_name:new_name},   //向服务器提交的数据
+{#                数据提交成功后服务端返回的数据#}
+                success:function (data){
+                    var data_dict=JSON.parse(data)          //将返回的数据进行数据转换------服务端返回的json字符串
+                    console.log(data_dict)
+                    if(data_dict.status){                   //判断data_dict中的状态   如果成功-跳转到/firm
+                        location.href='/firm'
+                    }else{
+                        console.log(data_dict.error)
+                        alert(data_dict.error)
+                    }
+                }
+            })
+        }
+
+    })
+    //删除操作
+    $('.delbut').click(function () {
+
+        var del_id=$(this).attr('id')
+        console.log(del_id)
+        binBtndel()
+        function binBtndel() {
+            $.ajax({
+                url:'/del_firm',                            //提交到什么位置
+                type:'POST',                                //提交的类型
+                data:{del_id:del_id},   //向服务器提交的数据
+                success:function (data){
+                    var data_dict=JSON.parse(data)          //将返回的数据进行数据转换------服务端返回的json字符串
+                    console.log(data_dict)
+                    if(data_dict.status){                   //判断data_dict中的状态   如果成功-跳转到/firm
+                        location.href='/firm'
+                    }else{
+                        console.log(data_dict.error)
+                        alert(data_dict.error)
+                    }
+
+
+                }
+
+
+            })
+
+        }
+    })
+
+
+
+
     </script>
 
 
