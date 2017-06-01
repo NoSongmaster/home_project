@@ -20,9 +20,12 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$',views.login),
     url(r'^login',views.login),
+    url(r'^create_hosts',views.create_hosts),
     url(r'^home',views.home),
     url(r'^user_host',views.user_host),
     url(r'^firm',views.firm),
     url(r'^add_firm',views.add_firm),
     url(r'^del_firm',views.del_firm),
+    url(r'^add_host',views.add_host),
+    url(r'^edit_host_(\d+)',views.edit_host),
 ]

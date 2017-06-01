@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block article_item %}
-    <h1>所有主机列表</h1>
+    <h5>所有主机列表</h5><a href="/add_host" class="btn btn-default">增加</a>
 
 
     <table border="1" class="table">
@@ -10,20 +10,21 @@
                 <th>主机IP</th>
                 <th>主机端口</th>
                 <th>部门</th>
+                <th>操作</th>
             </tr>
         </thead>
         <tbody>
-        {% for row in hosts %}
+        {% for row in hosts_list %}
             <tr>
-
                 <td>{{ row.id }}</td>
                 <td>{{ row.ip }}</td>
                 <td>{{ row.port }}</td>
                 <td>{{ row.firm.firm_nam }}</td>
-            </tr>
+            <td><a href="/edit_host_{{ row.id }}">编辑</a></td>
         {% endfor %}
         </tbody>
     </table>
+    {{ page.html_str |safe}}
 {% endblock %}
 
 {% block  js %}
