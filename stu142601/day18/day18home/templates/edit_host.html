@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+        <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
+</head>
+<body>
+<div style="width: 700px; margin: 0 auto">
+    <form method="POST" action="/edit_host_{{ uid }}" novalidate>
+        {% csrf_token %}
+      <div class="form-group" >
+        <label >IP</label>
+          {{ obj.ip }}
+          <span>{{ obj.errors.ip.0 }}</span>
+      </div>
+      <div class="form-group" >
+        <label >端口</label>
+          {{ obj.port }}
+          <span>{{ obj.errors.port.0 }}</span>
+      </div>
+        <div class="form-group" >
+        <label >业务线</label>
+          {{ obj.firm_id }}
+          <span>{{ obj.errors.firm_id.0 }}</span>
+      </div>
+
+      <button type="submit" class="btn btn-default">提交</button>
+    </form>
+</div>
+
+
+
+</body>
+</html>
