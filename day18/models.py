@@ -14,6 +14,7 @@ class Article(models.Model):
     article_comment=models.ManyToManyField('Comment')
     #文章作者:
     article_auther=models.ForeignKey('Userinfo')
+	article_type=models.ForeignKey('Article_Type')
 class Comment(models.Model):
 	#评论者
     comment_user=models.ForeignKey('Userinfo')
@@ -21,4 +22,8 @@ class Comment(models.Model):
 	comment_article=models.ForeignKey('Article')
     #评论内容
 	comment_content=models.CharField(max_length=500)
+class Article_Type(models.Model):
+	#区分文章类型
+	type_name=CharField(max_length=32)
+	
 
