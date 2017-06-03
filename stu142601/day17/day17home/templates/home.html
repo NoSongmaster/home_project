@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block article_item %}
+    <h1>所有主机列表</h1>
+
+
+    <table border="1" class="table">
+        <thead>
+            <tr>
+                <th>主机 ID</th>
+                <th>主机IP</th>
+                <th>主机端口</th>
+                <th>部门</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for row in hosts %}
+            <tr>
+
+                <td>{{ row.id }}</td>
+                <td>{{ row.ip }}</td>
+                <td>{{ row.port }}</td>
+                <td>{{ row.firm.firm_nam }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block  js %}
+{% endblock %}
